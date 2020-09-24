@@ -1,0 +1,11 @@
+.loginForm {
+  border: 1px solid #ababab;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: 0 auto;
+  width: 80%; /* value of your choice which suits your alignment */
+  padding-left: 55px;
+  padding-right: 54px;
+  padding-top: 37.03px;
+  padding-bottom: 38px;
+}
