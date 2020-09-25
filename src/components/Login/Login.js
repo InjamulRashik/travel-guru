@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./firebase.config";
 import styles from "./Login.module.css";
 import HeaderBlack from "../Header/HeaderBlack";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import fbIcon from "../../icons/fb.png";
 import gIcon from "../../icons/google.png";
+import { UserContext } from "../../App";
 
 firebase.initializeApp(firebaseConfig);
 
 const Login = () => {
   let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/" } };
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [user, setUser] = useState({
     isSignedIn: false,
     name: "",
@@ -32,13 +37,10 @@ const Login = () => {
           email: email,
           photo: photoURL,
         };
-        setUser(signedInUser);
-        console.log(displayName, photoURL, email);
+        setLoggedInUser(signedInUser);
+        history.replace(from);
       })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.message);
-      });
+      .catch((error) => {});
   };
   const handleSubmit = (e) => {
     if (user.email && user.password) {
@@ -49,10 +51,8 @@ const Login = () => {
           const newUserInfo = { ...user };
           newUserInfo.error = "";
           newUserInfo.success = true;
-          if ((newUserInfo.success = true)) {
-            history.push("/booking");
-          }
-          setUser(newUserInfo);
+          setLoggedInUser(newUserInfo);
+          history.replace(from);
         })
         .catch(function (error) {
           // Handle Errors here.
@@ -151,7 +151,10 @@ const Login = () => {
           </form>
         </div>
         <br />
-        <button onClick={handleSignIn}>Log in</button>
+        <button className={styles.gButton} onClick={handleSignIn}>
+          <img src={gIcon} alt="" />
+          Continue with Google{" "}
+        </button>
       </div>
     </div>
   );

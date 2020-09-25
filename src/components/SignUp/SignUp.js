@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./firebase.config";
 import styles from "./SignUp.module.css";
 import HeaderBlack from "../Header/HeaderBlack";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import fbIcon from "../../icons/fb.png";
 import gIcon from "../../icons/google.png";
-
-if (!firebase.apps.length) {
-  firebase.initializeApp({});
-}
+import { UserContext } from "../../App";
 
 const SignUp = () => {
   let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/" } };
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  if (!firebase.apps.length) {
+    firebase.initializeApp({});
+  }
+
   const [user, setUser] = useState({
     isSignedIn: false,
     email: "",
@@ -46,6 +51,23 @@ const SignUp = () => {
         });
     }
     e.preventDefault();
+  };
+  const handleSignIn = () => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const { displayName, photoURL, email } = result.user;
+        const signedInUser = {
+          isSignedIn: true,
+          name: displayName,
+          email: email,
+          photo: photoURL,
+        };
+        setLoggedInUser(signedInUser);
+        history.replace(from);
+      })
+      .catch((error) => {});
   };
   const handleBlur = (e) => {
     let isFieldValid = true;
@@ -146,7 +168,10 @@ const SignUp = () => {
         </div>
         <p style={{ color: "red", textAlign: "center" }}>{user.error}</p>
         <br />
-        <button>Log in</button>
+        <button className={styles.gButton} onClick={handleSignIn}>
+          <img src={gIcon} alt="" />
+          Continue with Google{" "}
+        </button>
       </div>
     </div>
   );

@@ -9,3 +9,14 @@
   padding-top: 37.03px;
   padding-bottom: 38px;
 }
+.gButton {
+  background: rgb(237, 237, 237);
+  border: 1px solid #c7c7c7;
+  box-sizing: border-box;
+  border-radius: 57px;
+}
+.gButton img {
+  width: 37px;
+  height: 37px;
+  margin-right: 10px;
+}

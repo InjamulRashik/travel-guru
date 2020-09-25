@@ -6,26 +6,25 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { placeData } from "../../fakeData/placeData";
 
-const Booking = () => {
+const Booking2 = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [origin, setOrigin] = useState("Dhaka");
-  const [destination, setDestination] = useState("Cox's Bazar");
+  const [destination, setDestination] = useState("Sreemangal");
   return (
     <div className={styles.body}>
       <Header />
       <div className="container">
         <div className={`row ${styles.homeContent}`}>
           <div className={`col-md-6 ${styles.info}`}>
-            <h1 className={styles.h1}>Cox's Bazar</h1>
+            <h1 className={styles.h1}>Sreemangal</h1>
             <p className={styles.p}>
-              Cox’s Bazar is a town on the southeast coast of Bangladesh. It’s
-              known for its very long, sandy beachfront, stretching from Sea
-              Beach in the north to Kolatoli Beach in the south. Aggameda Khyang
-              monastery is home to bronze statues and centuries-old Buddhist
-              manuscripts. South of town, the tropical rainforest of Himchari
-              National Park has waterfalls and many birds. North, sea turtles
-              breed on nearby Sonadia Island.
+              Sreemangal is situated in Moulvibazar district in sylhet division.
+              Sreemangal is an Upazila. It is famous for tea garden. Rain all
+              time occurs here. Nature has adorned sreemangal with green tress.
+              Its natural scenery is very charming. It soothes one’s eyes. Birds
+              are twittering always here. The first tea garden in Bangladesh
+              which names “Malni chho ra tea garden” is here.
             </p>
 
             <br />
@@ -75,7 +74,7 @@ const Booking = () => {
               </div>{" "}
               <br />
               <div className="d-flex justify-content-center">
-                <Link to="/hotel">
+                <Link to="/hotel2">
                   <button
                     type="button"
                     value=""
@@ -100,4 +99,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default Booking2;

@@ -1,4 +1,5 @@
 import React from "react";
+import { placeData } from "../../fakeData/placeData";
 import logo from "../../Logo.png";
 
 const Header = () => {

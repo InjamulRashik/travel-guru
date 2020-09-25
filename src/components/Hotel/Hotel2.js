@@ -9,24 +9,16 @@ import { UserContext } from "../../App";
 import { placeData } from "../../fakeData/placeData";
 import { Link, useParams } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "../../components/Login/firebase.config";
 
-const Hotel = () => {
+const Hotel2 = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
   const defaultProps = {
     center: {
-      lat: 21.426607,
-      lng: 91.995863,
+      lat: 24.305016,
+      lng: 91.729314,
     },
     zoom: 12,
   };
-
-  if (firebase.apps.length === 0) {
-    firebase.initializeApp(firebaseConfig);
-  }
 
   return (
     <div className="container">
@@ -130,7 +122,7 @@ const Hotel = () => {
         </div>
       </div>
       <div
-        class="d-flex flex-row bd-highlight mb-3 justify-content-between"
+        class="d-flex flex-row bd-highlight mb-3 justify-content-between "
         style={{ marginTop: "20px" }}
       >
         <div class="d-flex flex-column bd-highlight mb-3">
@@ -139,7 +131,7 @@ const Hotel = () => {
               <img className={styles.img} src={hotel1} alt="" />
             </div>
             <div class="p-2 bd-highlight">
-              <h4>Hotel Sea Shine</h4>
+              <h4>Grand Selim</h4>
               <p className="text-muted">4 guests 2 bedrooms 2 beds 2 baths</p>
               <p className="text-muted">Wif Air conditioning Kitchen</p>
               <p className="text-muted">Cancellation fexibility availiable</p>
@@ -158,7 +150,7 @@ const Hotel = () => {
               <img className={styles.img} src={hotel2} alt="" />
             </div>
             <div class="p-2 bd-highlight">
-              <h4>Royal Tulip</h4>
+              <h4>Paradise Lodge</h4>
               <p className="text-muted">4 guests 2 bedrooms 2 beds 2 baths</p>
               <p className="text-muted">Wif Air conditioning Kitchen</p>
               <p className="text-muted">Cancellation fexibility availiable</p>
@@ -177,7 +169,7 @@ const Hotel = () => {
               <img className={styles.img} src={hotel3} alt="" />
             </div>
             <div class="p-2 bd-highlight">
-              <h4>Saymen</h4>
+              <h4>Balishira Resort</h4>
               <p className="text-muted">4 guests 2 bedrooms 2 beds 2 baths</p>
               <p className="text-muted">Wif Air conditioning Kitchen</p>
               <p className="text-muted">Cancellation fexibility availiable</p>
@@ -209,4 +201,4 @@ const Hotel = () => {
   );
 };
 
-export default Hotel;
+export default Hotel2;
