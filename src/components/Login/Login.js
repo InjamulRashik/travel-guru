@@ -25,6 +25,7 @@ const Login = () => {
     photo: "",
   });
   const provider = new firebase.auth.GoogleAuthProvider();
+  const fbProvider = new firebase.auth.FacebookAuthProvider();
   const handleSignIn = () => {
     firebase
       .auth()
@@ -41,6 +42,35 @@ const Login = () => {
         history.replace(from);
       })
       .catch((error) => {});
+  };
+  const handleFbSignIn = () => {
+    firebase
+      .auth()
+      .signInWithPopup(fbProvider)
+      .then(function (result) {
+        const { displayName, photoURL, email } = result.user;
+        const signedInUser = {
+          isSignedIn: true,
+          name: displayName,
+          email: email,
+          photo: photoURL,
+        };
+        setLoggedInUser(signedInUser);
+        history.replace(from);
+        var token = result.credential.accessToken;
+
+        var user = result.user;
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        var email = error.email;
+
+        var credential = error.credential;
+        // ...
+      });
   };
   const handleSubmit = (e) => {
     if (user.email && user.password) {
@@ -154,6 +184,11 @@ const Login = () => {
         <button className={styles.gButton} onClick={handleSignIn}>
           <img src={gIcon} alt="" />
           Continue with Google{" "}
+        </button>{" "}
+        <br />
+        <button className={styles.gButton} onClick={handleFbSignIn}>
+          <img src={fbIcon} alt="" />
+          Continue with Facebook{" "}
         </button>
       </div>
     </div>
