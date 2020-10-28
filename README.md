@@ -1,3 +1,18 @@
+## About this project
+
+Live link : [Travel Guru](https://travel-guru-mihr.web.app/)
+
+**This is a dummy website for booking hotels in 3 different sport of Bangladesh** <br />
+
+**`Functionalities`**
+
+- User can book hotels in 3 different spots in Bangladesh
+- User must be logged for booking and in to take this service
+- User can get the suggestion of hotels of the selected spot
+- A minimap will appear of the selected location for navigation
+
+## React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
