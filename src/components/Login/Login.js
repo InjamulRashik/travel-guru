@@ -161,6 +161,7 @@ const Login = () => {
               </div>
             </div>
             <button
+              name="loginBtn"
               type="submit"
               class="btn form-control"
               style={{
